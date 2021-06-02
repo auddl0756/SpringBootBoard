@@ -28,7 +28,7 @@ public class Board extends BaseEntity{
     private Integer boardVote;
 
     @Column(name="board_category",nullable = false)
-    private Long boardCategory;
+    private BoardCategory boardCategory;
 
     @Column(name="board_writer",nullable = false)
     private String boardWriter;
