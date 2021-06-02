@@ -28,6 +28,7 @@ public class Board extends BaseEntity{
     private Integer boardVote;
 
     @Column(name="board_category",nullable = false)
+    @Enumerated(EnumType.STRING)
     private BoardCategory boardCategory;
 
     @Column(name="board_writer",nullable = false)
