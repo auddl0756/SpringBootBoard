@@ -37,4 +37,8 @@ public class Member extends BaseEntity{
     @Column(name="member_birth",nullable = false)
     private LocalDateTime memberBirth;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name="member_role",nullable = false)
+    private MemberRole memberRole;
+
 }
