@@ -3,7 +3,7 @@ package com.board.board.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @ToString
 @Getter
@@ -35,7 +35,7 @@ public class Member extends BaseEntity{
     private String memberProfile;
 
     @Column(name="member_birth",nullable = false)
-    private LocalDateTime memberBirth;
+    private LocalDate memberBirth;
 
     @Enumerated(EnumType.STRING)
     @Column(name="member_role",nullable = false)
