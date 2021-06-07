@@ -1,8 +1,10 @@
 package com.board.board.entity;
 
 import lombok.*;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @ToString
 @Getter
@@ -33,5 +35,27 @@ public class Board extends BaseEntity{
 
     @Column(name="board_writer",nullable = false)
     private String boardWriter;
+    
+    @Builder
+    public Board(String boardTitle,
+                 String boardContent,
+                 String boardWriter,
+                 BoardCategory boardCategory){
+        Assert.hasText(boardTitle, "boardTitle must not be empty");
+        Assert.hasText(boardContent, "boardContent must not be empty");
+        Assert.hasText(boardWriter, "boardWriter must not be empty");
+        Assert.hasText(String.valueOf(boardCategory), "boardCategory must not be empty");
+        
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardWriter = boardWriter;
+        this.boardCategory = boardCategory;
+    }
+    
+    @PrePersist
+    public void prePersist(){
+        this.boardView = this.boardView == null ? 0 : this.boardView;
+        this.boardVote = this.boardVote == null ? 0 : this.boardVote;
+    }
 
 }
