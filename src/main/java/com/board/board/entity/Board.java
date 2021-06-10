@@ -12,35 +12,36 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Board extends BaseEntity{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="board_no")
+public class Board extends BaseEntity {
+    
+    @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "board_no")
     private Long boardNo;
-
-    @Column(name="board_title",nullable = false)
+    
+    @Column (name = "board_title", nullable = false)
     private String boardTitle;
-
-    @Column(name="board_content",columnDefinition = "TEXT",nullable = false)
+    
+    @Column (name = "board_content", columnDefinition = "TEXT", nullable = false)
     private String boardContent;
-
-    @Column(name="board_view",nullable = false)
+    
+    @Column (name = "board_view", nullable = false)
     private Integer boardView;
-
-    @Column(name="board_vote",nullable = false)
+    
+    @Column (name = "board_vote", nullable = false)
     private Integer boardVote;
-
-    @Column(name="board_category",nullable = false)
-    @Enumerated(EnumType.STRING)
+    
+    @Column (name = "board_category", nullable = false)
+    @Enumerated (EnumType.STRING)
     private BoardCategory boardCategory;
-
-    @Column(name="board_writer",nullable = false)
+    
+    @Column (name = "board_writer", nullable = false)
     private String boardWriter;
     
     @Builder
-    public Board(String boardTitle,
-                 String boardContent,
-                 String boardWriter,
-                 BoardCategory boardCategory){
+    public Board (String boardTitle,
+                  String boardContent,
+                  String boardWriter,
+                  BoardCategory boardCategory) {
         Assert.hasText(boardTitle, "boardTitle must not be empty");
         Assert.hasText(boardContent, "boardContent must not be empty");
         Assert.hasText(boardWriter, "boardWriter must not be empty");
@@ -53,9 +54,9 @@ public class Board extends BaseEntity{
     }
     
     @PrePersist
-    public void prePersist(){
+    public void prePersist () {
         this.boardView = this.boardView == null ? 0 : this.boardView;
         this.boardVote = this.boardVote == null ? 0 : this.boardVote;
     }
-
+    
 }

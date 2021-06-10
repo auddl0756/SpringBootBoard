@@ -25,26 +25,25 @@ public class BoardController {
         return "board";
     }
     
-    /**
-     * board 생성 페이지
-     * @return board 생성 페이지 연결
-     */
     @GetMapping("/board/new")
     public String createBoard (Model model){
+        log.info("/board/new 경로로 get 요청이 들어왔습니다.");
         model.addAttribute("form", new BoardCreateDto());
         return "board/boardForm";
     }
     
     @PostMapping("/board/new")
     public String createBoard (BoardCreateDto requestDto) {
+        log.info("/board/new 경로로 post 요청이 들어왔습니다.");
         boardServiceImpl.save(requestDto);
         return "redirect:/boards";
     }
     
     @GetMapping("/boards")
     public String getBoards (Model model){
-//        List<Board> boards = BoardServiceImpl;
-//        model.addAttribute("items", boards);
+        log.info("/boards 경로로 get 요청이 들어왔습니다.");
+        List<Board> boards = boardServiceImpl.getBoards();
+        model.addAttribute("boards", boards);
         return "board/boardList";
     }
 }

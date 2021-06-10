@@ -1,15 +1,18 @@
 package com.board.board.service;
 
+import com.board.board.entity.Board;
 import com.board.board.entity.SampleEntity;
 import com.board.board.web.SampleDTO;
 
+import java.util.List;
+
 public interface BoardService {
     
-    Long save (SampleDTO dto);
+    Long save(SampleDTO dto);
     
+    List<Board> getBoards ();
     
-    
-    default SampleDTO entityToDTO (SampleEntity entity){
+    default SampleDTO entityToDTO (SampleEntity entity) {
         SampleDTO dto = SampleDTO.builder()
                                  .id(entity.getId())
                                  .data(entity.getData())
@@ -17,7 +20,7 @@ public interface BoardService {
         return dto;
     }
     
-    default SampleEntity dtoToEntity(SampleDTO dto){
+    default SampleEntity dtoToEntity (SampleDTO dto) {
         SampleEntity entity
                 = SampleEntity.builder()
                               .id(dto.getId())
@@ -26,4 +29,5 @@ public interface BoardService {
         
         return entity;
     }
+    
 }
