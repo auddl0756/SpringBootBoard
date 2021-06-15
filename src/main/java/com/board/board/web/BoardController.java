@@ -22,7 +22,7 @@ public class BoardController {
     @GetMapping ("/board")
     public String board(){
         log.info("/board 경로로 get 요청이 들어왔습니다.");
-        return "board";
+        return "board/board";
     }
     
     @GetMapping("/board/new")

@@ -1,8 +1,8 @@
 package com.board.board.service;
 
+import com.board.board.dto.SampleDTO;
 import com.board.board.entity.Board;
 import com.board.board.entity.SampleEntity;
-import com.board.board.web.SampleDTO;
 
 import java.util.List;
 
