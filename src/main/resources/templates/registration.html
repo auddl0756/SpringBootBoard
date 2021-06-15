@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layouts/layout"
+>
+<th:block th:replace="~{/layouts/layout :: setContent(~{this::content})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입 페이지</title>
+
+    <!--CDN으로부터 받아오는 방식으로  jquery사용 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <script th:src="@{/js/register.js}"></script>
+
+</head>
+<body>
+<th:block th:fragment="content">
+<!--    <form method="POST" th:action="@{/register}" th:object="${dto}" th:id="regForm">-->
+    <form method="POST" th:action="@{/register}" th:object="${dto}" th:id="regForm">
+<!--    <form method="POST" th:object="${dto}" th:id="regForm">-->
+        <h1>회원 가입</h1>
+        <div th:if="${#fields.hasErrors()}">
+            <span class="validationError">
+                잘못 입력했습니다. 다시 입력해서 제출해주세요.
+            </span>
+        </div>
+
+        <label for="memberId" >ID :</label>
+<!--        <input type="text" name="memberId" th:field="*{memberId}"/> <br/>-->
+        <input type="text" th:field="*{memberId}" th:placeholder="4-12글자" />
+        <span class="validationError"
+              th:if="${#fields.hasErrors('memberId')}"
+              th:errors="*{memberId}">
+                아이디 오류
+        </span>
+<!--        <button id="duplicationCheck" type="button">아이디 중복검사</button>-->
+        <button type="button" th:onclick="memberIdSend()">아이디 중복 검사</button>
+        <br/>
+
+        <label for="memberNickname">사용할 닉네임 :</label>
+        <input type="text" th:field="*{memberNickname}" th:placeholder="4-12글자"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('memberNickname')}"
+              th:errors="*{memberNickname}">
+                닉네임 오류
+        </span>
+        <button type="button" th:onclick="memberNicknameSend()">닉네임 중복 검사</button>
+        <br/>
+
+        <label for="memberPwd">비밀번호 :</label>
+        <input type="password" th:field="*{memberPwd}" th:id="memberPwd" th:placeholder="6-20글자" />
+        <span class="validationError"
+              th:if="${#fields.hasErrors('memberPwd')}"
+              th:errors="*{memberPwd}">
+                비밀번호 오류
+        </span>
+        <br/>
+
+        <label for="confirm">비밀번호 재확인:</label>
+<!--        <input type="password" name="confirm" th:field="*{memberPwd}"/> <br/>-->
+        <input type="password" name="confirm" th:field="*{memberPwdConfirm}" th:id="memberPwdConfirm" th:placeholder="6-20글자"/>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('memberPwd')}"
+                  th:errors="*{memberPwd}">
+                비밀번호 오류
+        </span>
+        <br/>
+
+        <label for="memberEmail">이메일 :</label>
+        <input type="text"  th:field="*{memberEmail}" th:placeholder="이메일"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('memberEmail')}"
+              th:errors="*{memberEmail}">
+                이메일 오류
+        </span>
+        <br/>
+
+        <label for="memberBirth">생년월일 :</label>
+        <input type="text" th:field="*{memberBirth}" th:placeholder="주민번호앞자리" />
+        <span class="validationError"
+              th:if="${#fields.hasErrors('memberBirth')}"
+              th:errors="*{memberBirth}">
+                 생년월일 오류
+        </span>
+        <br/>
+
+<!--        <input type="submit" value="가입" class="submit_button">-->
+        <button type="button" value="가입" th:onclick="submitForm()">가입</button>
+
+    </form>
+</th:block>
+
+<script>
+    // ('#regForm').on("click",function (e){
+    //     e.preventDefault();
+    // });
+</script>
+
+</body>
+</th:block>
+</html>

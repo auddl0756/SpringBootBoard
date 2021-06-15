@@ -1,4 +1,4 @@
-package com.board.board.config.auth.dto;
+package com.board.board.dto;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

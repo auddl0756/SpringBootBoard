@@ -1,5 +1,6 @@
 package com.board.board.web;
 
+import com.board.board.dto.SampleDTO;
 import com.board.board.service.SampleEntityService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;

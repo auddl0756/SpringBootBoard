@@ -1,6 +1,6 @@
 package com.board.board.config.auth.service;
 
-import com.board.board.config.auth.dto.MemberAuthDTO;
+import com.board.board.dto.MemberAuthDTO;
 import com.board.board.entity.Member;
 import com.board.board.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;

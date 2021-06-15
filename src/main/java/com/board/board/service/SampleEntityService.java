@@ -1,7 +1,7 @@
 package com.board.board.service;
 
 import com.board.board.entity.SampleEntity;
-import com.board.board.web.SampleDTO;
+import com.board.board.dto.SampleDTO;
 
 public interface SampleEntityService {
 

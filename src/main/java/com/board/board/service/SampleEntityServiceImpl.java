@@ -2,7 +2,7 @@ package com.board.board.service;
 
 import com.board.board.entity.SampleEntity;
 import com.board.board.repository.SampleEntityRepository;
-import com.board.board.web.SampleDTO;
+import com.board.board.dto.SampleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
