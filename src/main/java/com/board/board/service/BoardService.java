@@ -14,8 +14,6 @@ public interface BoardService {
     Long save(BoardCreateDto dto);
     
     List<Board> getBoards ();
-
-    PageResponseDTO<BoardCreateDto,Board> getList(PageRequestDTO requestDTO);
     
     default BoardCreateDto entityToDTO (Board board) {
         BoardCreateDto dto
@@ -36,7 +34,7 @@ public interface BoardService {
                         .boardWriter(dto.getBoardWriter())
                         .boardCategory(dto.getBoardCategory())
                         .build();
-        
+
         return entity;
     }
     
