@@ -14,14 +14,21 @@ public interface BoardService {
     Long save(BoardCreateDto dto);
     
     List<Board> getBoards ();
+
+    PageResponseDTO<BoardCreateDto,Board> getList(PageRequestDTO dto);
     
     default BoardCreateDto entityToDTO (Board board) {
         BoardCreateDto dto
                 = BoardCreateDto.builder()
+                                .boardNo(board.getBoardNo())
                                 .boardTitle(board.getBoardTitle())
                                 .boardContent(board.getBoardContent())
                                 .boardWriter(board.getBoardWriter())
                                 .boardCategory(board.getBoardCategory())
+                                .boardView(board.getBoardView())
+                                .boardVote(board.getBoardVote())
+                                .regDate(board.getRegDate())
+                                .modDate(board.getModDate())
                                 .build();
         return dto;
     }

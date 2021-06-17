@@ -1,6 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header" />
+<head th:replace="fragments/header :: header"/>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        li{
+            list-style-type: none;
+            display: inline;
+            outline: 1px blue;
+        }
+    </style>
+</head>
 <body>
 <div class="container">
     <div>
@@ -12,20 +22,52 @@
                 <th>작성자</th>
                 <th>조회 수</th>
                 <th>추천 수</th>
+                <th>작성일</th>
                 <th></th>
             </tr>
             </thead>
+
             <tbody>
-            <tr th:each="board : ${boards}" th:onclick="'window.location.href=\'' + @{/board/{id} (id=${board.boardNo})}+'\''">
-                    <td th:text="${board.boardNo}"></td>
-                    <td th:text="${board.boardTitle}"></td>
-                    <td th:text="${board.boardWriter}"></td>
-                    <td th:text="${board.boardView}"></td>
-                    <td th:text="${board.boardVote}"></td>
-            </tr>
+<!--            <tr th:each="board : ${boards}" th:onclick="'window.location.href=\'' + @{/board/{id} (id=${board.boardNo})}+'\''">-->
+<!--                    <td th:text="${board.boardNo}"></td>-->
+<!--                    <td th:text="${board.boardTitle}"></td>-->
+<!--                    <td th:text="${board.boardWriter}"></td>-->
+<!--                    <td th:text="${board.boardView}"></td>-->
+<!--                    <td th:text="${board.boardVote}"></td>-->
+<!--            </tr>-->
+                <tr th:each="dto : ${response.dtoList}">
+                    <th scope="row">
+                        <a th:href="@{/board/${dto.boardNo}">
+                            [[${dto.boardNo}]]
+                        </a>
+                    </th>
+                    <td>[[${dto.boardTitle}]]</td>
+                    <td>[[${dto.boardWriter}]]</td>
+                    <td>[[${dto.boardView}]]</td>
+                    <td>[[${dto.boardVote}]]</td>
+                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd HH:mm:ss')}]]</td>
+
+                </tr>
+
             </tbody>
         </table>
     </div>
+
+    <ul class="pagination h-100 justify-content-center align-items-center">
+        <li class="page-item" th:if="${response.prevExist}">
+            <a class="page-link" th:href="@{/boards(page=${response.startPage}-1)}" tabindex="-1">이전 10개</a>
+        </li>
+
+        <li th:class=" 'page-item' + ${response.nowPage == page ?'active':''} " th:each="page: ${response.pageList}">
+            <a class="page-link" th:href="@{/boards(page=${page})}">
+                [[${page}]]
+            </a>
+        </li>
+
+        <li class="page-item" th:if="${response.nextExist}">
+            <a class="page-link" th:href="@{/boards(page=${response.endPage}+1)}">다음 10개</a>
+        </li>
+    </ul>
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
 </body>

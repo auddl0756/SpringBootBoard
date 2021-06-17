@@ -1,6 +1,7 @@
 package com.board.board.web;
 
 import com.board.board.dto.BoardCreateDto;
+import com.board.board.dto.PageRequestDTO;
 import com.board.board.entity.Board;
 import com.board.board.service.BoardServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -39,11 +40,21 @@ public class BoardController {
         return "redirect:/boards";
     }
     
+//    @GetMapping("/boards")
+//    public String getBoards (Model model){
+//        log.info("/boards 경로로 get 요청이 들어왔습니다.");
+//        List<Board> boards = boardServiceImpl.getBoards();
+//        model.addAttribute("boards", boards);
+//        return "board/boardList";
+//    }
+
     @GetMapping("/boards")
-    public String getBoards (Model model){
+    public String getBoardList(PageRequestDTO pageRequestDTO,Model model){
         log.info("/boards 경로로 get 요청이 들어왔습니다.");
-        List<Board> boards = boardServiceImpl.getBoards();
-        model.addAttribute("boards", boards);
+
+        model.addAttribute("response",boardServiceImpl.getList(pageRequestDTO));
+
+        System.out.println(boardServiceImpl.getList(pageRequestDTO));
         return "board/boardList";
     }
 }
