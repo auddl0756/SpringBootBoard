@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <!--    <div th:replace="0fragments/bodyHeader :: bodyHeader"/>-->
+
+    <div>
+        <div>
+            <h4>디테일 페이지</h4>
+            <br>
+            <form role="form" th:object="${board}">
+                <div class="form-group">
+                    <label>제목</label>
+                    <div>
+                        <p th:text="*{boardTitle}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>작성자</label>
+                    <div>
+                        <p th:text="*{boardWriter}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>내용</label>
+                    <div>
+                        <p th:text="*{boardContent}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>카테고리</label>
+                    <div>
+                        <p th:text="*{boardCategory}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>조회 수</label>
+                    <div>
+                        <p th:text="*{boardView}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>추천 수</label>
+                    <div>
+                        <p th:text="*{boardVote}"></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

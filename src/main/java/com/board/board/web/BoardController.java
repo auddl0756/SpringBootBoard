@@ -1,6 +1,7 @@
 package com.board.board.web;
 
 import com.board.board.dto.BoardCreateDto;
+import com.board.board.dto.BoardDetailDto;
 import com.board.board.entity.Board;
 import com.board.board.service.BoardServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -45,5 +47,13 @@ public class BoardController {
         List<Board> boards = boardServiceImpl.getBoards();
         model.addAttribute("boards", boards);
         return "board/boardList";
+    }
+    
+    @GetMapping("/board/{id}")
+    public String getBoard (Model model, @PathVariable("id") Long id) {
+        log.info("/board/" + id + "경로로 get 요청이 들어왔습니다.");
+        BoardDetailDto board = boardServiceImpl.getBoard(id);
+        model.addAttribute("board", board);
+        return "board/boardDetail";
     }
 }
