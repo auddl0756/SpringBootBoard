@@ -46,13 +46,13 @@ public class Board extends BaseEntity {
         Assert.hasText(boardContent, "boardContent must not be empty");
         Assert.hasText(boardWriter, "boardWriter must not be empty");
         Assert.hasText(String.valueOf(boardCategory), "boardCategory must not be empty");
-        
+
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.boardWriter = boardWriter;
         this.boardCategory = boardCategory;
     }
-    
+
     @PrePersist
     public void prePersist () {
         this.boardView = this.boardView == null ? 0 : this.boardView;
